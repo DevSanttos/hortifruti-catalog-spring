@@ -41,19 +41,15 @@ public class ProductEntity {
     @Column(length = 255)
     private String imageUrl;
 
-    //realizar no create
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    //realizar no update
     private LocalDateTime updatedAt;
 
-    //realizar no create
     @ManyToOne
     @JoinColumn(name = "created_by", nullable = false, updatable = false)
     private AdminEntity createdBy;
 
-    //realizar no update
     @ManyToOne
     @JoinColumn(name = "updated_by")
     private AdminEntity updatedBy;
