@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard Administrativo — GestHortifruti</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <div class="brand">
+        <img src="assets/images/Group 1.png" alt="GestHortifruti" class="logo" aria-hidden="true">
+        <span class="brand-name">GestHortifruti</span>
+      </div>
+      <h1 class="page-title">Dashboard Administrativo</h1>
+    </div>
+
+    <div class="header-center">
+      <label for="top-search" class="visually-hidden">Buscar Produtos</label>
+      <div class="search-wrapper">
+        <input id="top-search" class="search-input" type="search" placeholder="Buscar Produtos" />
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="icon-btn" aria-label="Notificações">🔔</button>
+      <button class="icon-btn" aria-label="Mensagens">💬</button>
+      <div class="user">
+        <img src="" alt="Avatar" class="avatar" />
+        <div class="user-info">
+          <span class="user-name">Natanel de Oliveira</span>
+          <span class="user-role">Admin</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar" aria-label="Navegação principal">
+      <nav>
+        <ul class="nav-section">
+          <li class="nav-title">Principal</li>
+          <li><a class="nav-link active" href="#">Dashboard</a></li>
+          <li><a class="nav-link" href="#">Produtos</a></li>
+          <li><a class="nav-link" href="#">Categorias</a></li>
+        </ul>
+
+        <ul class="nav-section">
+          <li class="nav-title">Gestão</li>
+          <li><a class="nav-link" href="#">Usuários</a></li>
+          <li><a class="nav-link" href="#">Relatórios</a></li>
+        </ul>
+
+        <ul class="nav-section">
+          <li class="nav-title">Sistema</li>
+          <li><a class="nav-link" href="#">Configurações</a></li>
+          <li><a class="nav-link" href="#">Notificações</a></li>
+          <li><a class="nav-link" href="#">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <section class="kpis" aria-label="Indicadores principais">
+        <article class="kpi card">
+          <div class="kpi-head">
+            <h3 class="kpi-title">Usuários com email cadastrado</h3>
+            <div class="kpi-icon">👥</div>
+          </div>
+          <div class="kpi-body">
+            <div class="kpi-value">1.147</div>
+            <div class="kpi-meta kpi-up">+18.5% vs mês anterior</div>
+          </div>
+        </article>
+
+        <article class="kpi card">
+          <div class="kpi-head">
+            <h3 class="kpi-title">Produtos ativos no catálogo</h3>
+            <div class="kpi-icon">📦</div>
+          </div>
+          <div class="kpi-body">
+            <div class="kpi-value">42</div>
+            <div class="kpi-meta kpi-up">+50.0% vs mês anterior</div>
+          </div>
+        </article>
+
+        <article class="kpi card">
+          <div class="kpi-head">
+            <h3 class="kpi-title">Produtos em promoção</h3>
+            <div class="kpi-icon">🔥</div>
+          </div>
+          <div class="kpi-body">
+            <div class="kpi-value">12</div>
+            <div class="kpi-meta kpi-up">+8.5% vs mês anterior</div>
+          </div>
+        </article>
+
+        <article class="kpi card">
+          <div class="kpi-head">
+            <h3 class="kpi-title">Categorias cadastradas e ativas</h3>
+            <div class="kpi-icon">🗂️</div>
+          </div>
+          <div class="kpi-body">
+            <div class="kpi-value">6</div>
+            <div class="kpi-meta kpi-up">+5.0% vs mês anterior</div>
+          </div>
+        </article>
+      </section>
+
+      <section class="chart card" aria-labelledby="visitas-title">
+        <div class="chart-header">
+          <h2 id="visitas-title">Visitas do site</h2>
+          <select class="period-select" aria-label="Período">
+            <option>Este mês</option>
+            <option>Últimos 6 meses</option>
+          </select>
+        </div>
+        <div class="chart-body">
+          <canvas id="visitsChart" height="120"></canvas>
+        </div>
+      </section>
+
+      <section class="activities card">
+        <h2 class="section-title">Atividades recentes</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Usuário</th><th>Ação</th><th>Data</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>ana.silva</td><td>Criou ordem #2312</td><td>2025-09-12 14:32</td><td><span class="status done">Concluído</span></td></tr>
+              <tr><td>bruno.r</td><td>Relatório exportado</td><td>2025-09-12 11:02</td><td><span class="status done">OK</span></td></tr>
+              <tr><td>daniel.t</td><td>Abertura de ticket #54</td><td>2025-09-10 21:43</td><td><span class="status pending">Pendente</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
+
+  <script>
+    // Sidebar toggle (mobile)
+    document.addEventListener('click', function(e){
+      const btn = e.target.closest('.menu-btn');
+      const sidebar = document.querySelector('.sidebar');
+      if(btn) sidebar.classList.toggle('open');
+    });
+
+    // Simple Chart.js example to mimic the screenshot
+    document.addEventListener('DOMContentLoaded', function(){
+      const ctx = document.getElementById('visitsChart');
+      if(!ctx) return;
+
+      const gradient = ctx.getContext('2d').createLinearGradient(0,0,0,200);
+      gradient.addColorStop(0, 'rgba(16,185,129,0.20)');
+      gradient.addColorStop(1, 'rgba(16,185,129,0.02)');
+
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['5k','10k','15k','20k','25k','30k','35k','40k','45k','50k','55k','60k'],
+          datasets: [{
+            label: 'Visitas',
+            data: [20,35,28,70,40,45,60,50,66,60,58,62],
+            fill: true,
+            backgroundColor: gradient,
+            borderColor: 'rgba(16,185,129,0.9)',
+            tension: .35,
+            pointRadius: 3
+          }]
+        },
+        options: {
+          maintainAspectRatio:false,
+          scales:{
+            x:{grid:{display:false}, ticks:{color:'#9aa6b2'}},
+            y:{grid:{color:'rgba(15,23,36,0.03)'}, ticks:{color:'#9aa6b2'}}
+          },
+          plugins:{legend:{display:false}}
+        }
+      });
+    });
+  </script>
+</body>
+</html>
